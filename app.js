@@ -1,24 +1,22 @@
 const game = document.getElementById("game");
 const bigfish = document.getElementById("bigfish");
+const point = document.getElementById("point");
+let score = 0;
+let randomX = Math.floor(Math.random() * window.innerWidth);
+let randomY = Math.floor(Math.random() * window.innerHeight);
 
 //creat the fish
-function creatSmallfishPos() {
-  let randomX = Math.floor(Math.random() * window.innerWidth);
-  let randomY = Math.floor(Math.random() * window.innerHeight);
+function creatSmallfishPos(x, y) {
   const smallfish = document.createElement("img");
   smallfish.classList.add("smallfish");
   smallfish.src = "smallfish.png";
   smallfish.style.top = randomY + "px";
   smallfish.style.left = randomX + "px";
+  game.appendChild(smallfish);
   return smallfish;
 }
-creatSmallfishPos();
+creatSmallfishPos(randomX, randomY);
 //put fish in
-game.appendChild(creatSmallfishPos());
-newFish = document.getElementsByClassName("smallfish")[0];
-let smallfishCurrentX = newFish.offsetLeft;
-let smallfishCurrentY = newFish.offsetTop;
-//console.log(smallfishCurrentX);
 
 //bigfish first position
 function init() {
@@ -27,6 +25,10 @@ function init() {
   bigfish.style.top = "0px";
 }
 init();
+
+let newFish = document.getElementsByClassName("smallfish")[0];
+
+//let smallfishCurrentY = newFish.offsetTop;
 
 //bigfish onkeydown event
 function getKeyAndMove(e) {
@@ -45,45 +47,44 @@ function getKeyAndMove(e) {
     case 40: //down arrow key
       moveDown();
       break;
-      //var about position
-      let bigfishCurrentX = bigfish.offsetLeft;
-      let bigfishCurrentY = bigfish.offsetTop;
+  }
+  //var about position
+  let bigfishCurrentX = bigfish.offsetLeft;
+  let bigfishCurrentY = bigfish.offsetTop;
 
-      let bigfishCenterX = bigfish.offsetLeft + 75;
-      let bigfishCenterY = bigfish.offsetTop + 40;
-  }
+  let bigfishCenterX = bigfish.offsetLeft + 75;
+  let bigfishCenterY = bigfish.offsetTop + 40;
 
-  function moveLeft() {
-    bigfish.style.left = parseInt(bigfish.style.left) - 20 + "px";
-    bigfish.style.transform = "rotateY(180deg)";
+  //console.log(bigfishCurrentX);
+  function collision(newfish) {
+    if (
+      bigfishCenterX > newfish.offsetLeft + 10 &&
+      bigfishCenterX < newfish.offsetLeft + 60 &&
+      bigfishCenterY > newfish.offsetTop + 10 &&
+      bigfishCenterY < newfish.offsetTop + 60
+    ) {
+      score++;
+      point.innerText = score;
+      newfish.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+      newfish.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+    }
   }
-  function moveUp() {
-    bigfish.style.top = parseInt(bigfish.style.top) - 20 + "px";
-    bigfish.style.transform = "rotate(-90deg)";
-  }
-  function moveRight() {
-    bigfish.style.left = parseInt(bigfish.style.left) + 20 + "px";
-    bigfish.style.transform = "rotate(0)";
-  }
-  function moveDown() {
-    bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
-    bigfish.style.transform = "rotate(90deg)";
-  }
+  collision(newFish);
 }
 
-//console.log(bigfishCenterX);
-//collision();
-
-/* function collision() {
-    if (
-      bigfishCenterX > smallfishCurrentX &&
-      bigfishCenterX < smallfishCurrentX + 56 &&
-      bigfishCenterY > smallfishCurrentY &&
-      bigfishCenterY < smallfishCurrentY + 56
-    ) {
-      creatSmallfishPos().parentNode.removeChild(creatSmallfishPos());
-      setTimeout(creatSmallfishPos, 500);
-    }
-  } */
-
-//console.log(bigfish.offsetTop);
+function moveLeft() {
+  bigfish.style.left = parseInt(bigfish.style.left) - 20 + "px";
+  bigfish.style.transform = "rotateY(180deg)";
+}
+function moveUp() {
+  bigfish.style.top = parseInt(bigfish.style.top) - 20 + "px";
+  bigfish.style.transform = "rotate(-90deg)";
+}
+function moveRight() {
+  bigfish.style.left = parseInt(bigfish.style.left) + 20 + "px";
+  bigfish.style.transform = "rotate(0)";
+}
+function moveDown() {
+  bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
+  bigfish.style.transform = "rotate(90deg)";
+}

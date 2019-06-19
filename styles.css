@@ -27,3 +27,11 @@
 .show {
   display: block;
 }
+#point {
+  display: block;
+  height: 10vh;
+  width: 20vw;
+  text-align: center;
+  font-size: 50px;
+  margin: 0 auto;
+}
