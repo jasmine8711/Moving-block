@@ -7,6 +7,8 @@
         content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible"
         content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet"
         href="styles.css">
     <title>Game</title>
@@ -14,7 +16,10 @@
 
 <body onkeydown='getKeyAndMove(event)'>
     <section id="game">
-        <p id="point">0</p>
+        <p id="score">Your score :
+            <br>
+            <span id="point">0</span>
+        </p>
         <img src="bigfish.png"
             alt=""
             id="bigfish">

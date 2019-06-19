@@ -10,9 +10,14 @@ function creatSmallfishPos(x, y) {
   const smallfish = document.createElement("img");
   smallfish.classList.add("smallfish");
   smallfish.src = "smallfish.png";
+  if (randomY >= window.innerHeight - 200) {
+    randomY = window.innerHeight - 210;
+  }
+
   smallfish.style.top = randomY + "px";
   smallfish.style.left = randomX + "px";
   game.appendChild(smallfish);
+
   return smallfish;
 }
 creatSmallfishPos(randomX, randomY);
@@ -48,6 +53,7 @@ function getKeyAndMove(e) {
       moveDown();
       break;
   }
+
   //var about position
   let bigfishCurrentX = bigfish.offsetLeft;
   let bigfishCurrentY = bigfish.offsetTop;
@@ -73,18 +79,34 @@ function getKeyAndMove(e) {
 }
 
 function moveLeft() {
-  bigfish.style.left = parseInt(bigfish.style.left) - 20 + "px";
-  bigfish.style.transform = "rotateY(180deg)";
+  if (bigfish.offsetLeft > 0) {
+    bigfish.style.left = parseInt(bigfish.style.left) - 20 + "px";
+    bigfish.style.transform = "rotateY(180deg)";
+  } else {
+    bigfish.style.left = "0px";
+  }
 }
 function moveUp() {
-  bigfish.style.top = parseInt(bigfish.style.top) - 20 + "px";
-  bigfish.style.transform = "rotate(-90deg)";
+  if (bigfish.offsetTop > 0) {
+    bigfish.style.top = parseInt(bigfish.style.top) - 20 + "px";
+    bigfish.style.transform = "rotate(-90deg)";
+  } else {
+    bigfish.style.top = "0px";
+  }
 }
 function moveRight() {
-  bigfish.style.left = parseInt(bigfish.style.left) + 20 + "px";
-  bigfish.style.transform = "rotate(0)";
+  if (bigfish.offsetLeft < window.innerWidth - 150) {
+    bigfish.style.left = parseInt(bigfish.style.left) + 20 + "px";
+    bigfish.style.transform = "rotate(0)";
+  } else {
+    bigfish.style.left = window.innerWidth - 150 + "px";
+  }
 }
 function moveDown() {
-  bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
-  bigfish.style.transform = "rotate(90deg)";
+  if (bigfish.offsetTop < window.innerHeight - 200) {
+    bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
+    bigfish.style.transform = "rotate(90deg)";
+  } else {
+    alert("suicide!");
+  }
 }
