@@ -1,22 +1,35 @@
 const game = document.getElementById("game");
 const bigfish = document.getElementById("bigfish");
 const point = document.getElementById("point");
+//bigfish animation
+setInterval(() => {
+  bigfish.style.backgroundImage = "url('bigfish1.png')";
+  setTimeout(() => {
+    bigfish.style.backgroundImage = "url('bigfish.png')";
+  }, 500);
+}, 1000);
+
 let score = 0;
-let randomX = Math.floor(Math.random() * window.innerWidth);
-let randomY = Math.floor(Math.random() * window.innerHeight);
+let randomX;
+let randomY;
 
 //creat the fish
-function creatSmallfishPos(x, y) {
-  const smallfish = document.createElement("img");
-  smallfish.classList.add("smallfish");
-  smallfish.src = "smallfish.png";
-  if (randomY >= window.innerHeight - 200) {
-    randomY = window.innerHeight - 210;
-  }
+const smallfish = document.createElement("img");
+smallfish.classList.add("smallfish");
+smallfish.src = "smallfish.png";
+game.appendChild(smallfish);
 
-  smallfish.style.top = randomY + "px";
-  smallfish.style.left = randomX + "px";
-  game.appendChild(smallfish);
+function creatSmallfishPos(x, y) {
+  let randomX = Math.floor(Math.random() * window.innerWidth);
+  let randomY = Math.floor(Math.random() * window.innerHeight);
+  if (randomY >= window.innerHeight - 200) {
+    smallfish.style.top = window.innerHeight - 210 + "px";
+  } else if (randomX > window.innerWidth - 50) {
+    smallfish.style.top = window.innerWidth - 50 + "px";
+  } else {
+    smallfish.style.top = randomY + "px";
+    smallfish.style.left = randomX + "px";
+  }
 
   return smallfish;
 }
@@ -39,6 +52,8 @@ let newFish = document.getElementsByClassName("smallfish")[0];
 function getKeyAndMove(e) {
   //arrow move the fish
   var key_code = e.which || e.keyCode;
+  //creat a bigfish close mouse
+
   switch (key_code) {
     case 37: //left arrow key
       moveLeft();
@@ -71,8 +86,9 @@ function getKeyAndMove(e) {
     ) {
       score++;
       point.innerText = score;
-      newfish.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
-      newfish.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      let randomX = Math.floor(Math.random() * window.innerWidth);
+      let randomY = Math.floor(Math.random() * window.innerHeight);
+      creatSmallfishPos(randomX, randomY);
     }
   }
   collision(newFish);
@@ -80,7 +96,7 @@ function getKeyAndMove(e) {
 
 function moveLeft() {
   if (bigfish.offsetLeft > 0) {
-    bigfish.style.left = parseInt(bigfish.style.left) - 20 + "px";
+    bigfish.style.left = parseInt(bigfish.style.left) - 10 + "px";
     bigfish.style.transform = "rotateY(180deg)";
   } else {
     bigfish.style.left = "0px";
@@ -95,7 +111,7 @@ function moveUp() {
   }
 }
 function moveRight() {
-  if (bigfish.offsetLeft < window.innerWidth - 150) {
+  if (bigfish.offsetLeft < window.innerWidth - 100) {
     bigfish.style.left = parseInt(bigfish.style.left) + 20 + "px";
     bigfish.style.transform = "rotate(0)";
   } else {
@@ -107,6 +123,18 @@ function moveDown() {
     bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
     bigfish.style.transform = "rotate(90deg)";
   } else {
-    alert("suicide!");
+    game.appendChild(gameover);
   }
 }
+
+const gameover = document.createElement("img");
+gameover.classList.add("gameover");
+gameover.src = "gameover.png";
+
+gameover.addEventListener("click", () => {
+  gameover.classList.add("hidden");
+  score = 0;
+  point.innerText = score;
+  creatSmallfishPos(randomX, randomY);
+  collision(newFish);
+});

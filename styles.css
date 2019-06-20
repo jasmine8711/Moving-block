@@ -18,12 +18,16 @@
   width: 150px;
   height: 80px;
   z-index: 100;
+  background: url(bigfish.png) no-repeat;
+  background-size: contain;
 }
+
 .smallfish {
   position: absolute;
   width: 100px;
   z-index: 4;
 }
+
 .hidden {
   display: none;
 }
@@ -47,4 +51,12 @@
 }
 #point {
   font-size: 30px;
+}
+.gameover {
+  position: absolute;
+  z-index: 1000;
+  width: 400px;
+  top: 200px;
+  left: 500px;
+  cursor: pointer;
 }
