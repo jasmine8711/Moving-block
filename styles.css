@@ -15,7 +15,7 @@
 
 #bigfish {
   position: absolute;
-  width: 150px;
+  width: 110px;
   height: 80px;
   z-index: 100;
   background: url(bigfish.png) no-repeat;
@@ -24,7 +24,7 @@
 
 .smallfish {
   position: absolute;
-  width: 100px;
+  width: 95px;
   z-index: 4;
 }
 
@@ -39,7 +39,7 @@
   bottom: 10px;
   right: 250px;
   padding-top: 70px;
-
+  z-index: 998;
   height: 200px;
   width: 200px;
 

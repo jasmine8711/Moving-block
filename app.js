@@ -29,8 +29,8 @@ function creatSmallfishPos(x, y) {
   let randomY = Math.floor(Math.random() * window.innerHeight);
   if (randomY >= window.innerHeight - 200) {
     smallfish.style.top = window.innerHeight - 210 + "px";
-  } else if (randomX > window.innerWidth - 50) {
-    smallfish.style.top = window.innerWidth - 50 + "px";
+  } else if (randomX > window.innerWidth - 47) {
+    smallfish.style.left = window.innerWidth - 47 + "px";
   } else {
     smallfish.style.top = randomY + "px";
     smallfish.style.left = randomX + "px";
@@ -104,6 +104,7 @@ function moveLeft() {
     bigfish.style.left = parseInt(bigfish.style.left) - 10 + "px";
     bigfish.style.transform = "rotateY(180deg)";
   } else {
+    console.log(bigfish.offsetLeft);
     bigfish.style.left = "0px";
   }
 }
@@ -128,14 +129,14 @@ function moveDown() {
     bigfish.style.top = parseInt(bigfish.style.top) + 20 + "px";
     bigfish.style.transform = "rotate(90deg)";
   } else {
-    game.appendChild(gameover);
-    gameover.className.remove("hidden");
+    gameover.classList.remove("hidden");
   }
 }
-
+//creat gameover page
 const gameover = document.createElement("img");
-gameover.classList.add("gameover");
+gameover.classList.add("gameover", "hidden");
 gameover.src = "gameover.jpg";
+game.appendChild(gameover);
 
 gameover.addEventListener("click", () => {
   intro.classList.remove("hidden");
