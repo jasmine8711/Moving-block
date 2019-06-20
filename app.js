@@ -124,17 +124,19 @@ function moveDown() {
     bigfish.style.transform = "rotate(90deg)";
   } else {
     game.appendChild(gameover);
+    gameover.className.remove("hidden");
   }
 }
 
 const gameover = document.createElement("img");
 gameover.classList.add("gameover");
-gameover.src = "gameover.png";
+gameover.src = "gameover.jpg";
 
 gameover.addEventListener("click", () => {
   gameover.classList.add("hidden");
   score = 0;
   point.innerText = score;
+  init();
   creatSmallfishPos(randomX, randomY);
   collision(newFish);
 });
