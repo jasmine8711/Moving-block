@@ -58,3 +58,23 @@
   width: 100vw;
   cursor: pointer;
 }
+#intro {
+  background: url(intro.png) no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 9999;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 90px;
+  color: white;
+  padding-top: 280px;
+}
+#btn {
+  width: 300px;
+  height: 40px;
+  margin: 0;
+  font-size: 30px;
+  border-radius: 10px;
+}

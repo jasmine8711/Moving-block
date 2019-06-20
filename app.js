@@ -1,6 +1,11 @@
 const game = document.getElementById("game");
 const bigfish = document.getElementById("bigfish");
 const point = document.getElementById("point");
+const intro = document.getElementById("intro");
+const btn = document.getElementById("btn");
+btn.onclick = () => {
+  intro.classList.add("hidden");
+};
 //bigfish animation
 setInterval(() => {
   bigfish.style.backgroundImage = "url('bigfish1.png')";
@@ -79,7 +84,7 @@ function getKeyAndMove(e) {
   //console.log(bigfishCurrentX);
   function collision(newfish) {
     if (
-      bigfishCenterX > newfish.offsetLeft + 10 &&
+      bigfishCenterX > newfish.offsetLeft - 20 &&
       bigfishCenterX < newfish.offsetLeft + 60 &&
       bigfishCenterY > newfish.offsetTop + 10 &&
       bigfishCenterY < newfish.offsetTop + 60
@@ -133,6 +138,7 @@ gameover.classList.add("gameover");
 gameover.src = "gameover.jpg";
 
 gameover.addEventListener("click", () => {
+  intro.classList.remove("hidden");
   gameover.classList.add("hidden");
   score = 0;
   point.innerText = score;
