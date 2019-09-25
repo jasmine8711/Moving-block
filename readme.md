@@ -1,7 +1,7 @@
 #Eat fish game
 [demo](https://jasmine8711.github.io/Moving-block/)
 
-This game is our second solo project to practise javascript DOM manipulation.
+The purpose of this game is to practise javascript DOM manipulation, keyboard events and collision detection. The original task is to move a block. I created the interface in such a way that a, usually, boring game becomes a little fun to play.
 
 ##what we need to figure out ourself?
 1.Learning objectives (if this is a Learning Challenge)
@@ -18,6 +18,6 @@ move DOM elements on the page.
 1.Counter that counts how many squares you have picked up
 
 ##Intro of my game.
-In this game ,you need to use your keyboard arrow key to move the blue fish.
-If the blue fish catches the orange fish , you get one point!
-If you accidently go to the beach, you consider suicide ,the game over!
+1. In this game ,you need to use your keyboard arrow key to move the blue fish.
+1. If the blue fish catches the orange fish , you get one point! And the orange fish will show in another random spot, you can keep playing.
+1. Be careful of the beach, if you accidently go too fast and touch the beach, you consider suicide ,and game over!
